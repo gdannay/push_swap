@@ -1,8 +1,10 @@
 NAME	=	checker
 
-SRCS	=	srcs/checker.c		\
-			srcs/manage_args.c	\
-			srcs/manage_lst.c	
+SRCS	=	srcs_c/checker.c		\
+			srcs_c/manage_args.c	\
+			srcs_c/manage_lst.c		\
+			srcs_c/get_com.c		\
+			srcs_c/commands.c
 
 OBJS	=	$(SRCS:.c=.o)
 

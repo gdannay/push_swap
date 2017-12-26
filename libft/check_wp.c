@@ -57,7 +57,7 @@ void		check_width(char *str, int *i, t_flag *new, int *ret)
 		else if (str[*i] >= '0' && str[*i] <= '9')
 		{
 			new->precision = ft_atoi(str + *i);
-			*i = *i + length_nbr(new->precision);
+			*i = *i + ft_nbrlen(new->precision);
 		}
 		else
 			new->precision = 0;
@@ -79,12 +79,12 @@ void		check_wp(char *str, int *i, t_flag *new)
 			{
 				new->width = -3;
 				new->nb = ft_atoi(str + *i);
-				*i = *i + length_nbr(new->nb);
+				*i = *i + ft_nbrlen(new->nb);
 			}
 			else
 			{
 				new->width = ft_atoi(str + *i);
-				*i = *i + length_nbr(new->width);
+				*i = *i + ft_nbrlen(new->width);
 			}
 			ret = 1;
 		}

@@ -29,6 +29,20 @@ static t_elem	*new_elem(char *av, t_elem **a_pile, t_elem *tmp)
 	return (new);	
 }
 
+static int		check_double(t_elem *a_pile, int n)
+{
+	t_elem *tmp;
+
+	tmp = a_pile;
+	while (tmp->next)
+	{
+		if (tmp->nb == n)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 t_elem			*check_args(int ac, char **av)
 {
 	t_elem	*a_pile;
@@ -39,7 +53,8 @@ t_elem			*check_args(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		if ((tmp = new_elem(av[i], &a_pile, tmp)) == NULL)
+		if ((tmp = new_elem(av[i], &a_pile, tmp)) == NULL
+		|| check_double(a_pile, tmp->nb))
 		{
 			del_lst(&a_pile);
 			write(2, "Error\n", 6);
@@ -47,5 +62,6 @@ t_elem			*check_args(int ac, char **av)
 		}
 		i++;
 	}
+	tmp = a_pile;
 	return (a_pile);
 }
