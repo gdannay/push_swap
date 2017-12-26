@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 int	ft_atoi(const char *nbr)
 {
-	int	i;
-	int	neg;
-	int	n;
+	int		i;
+	int		neg;
+	long	n;
 
 	i = 0;
 	neg = 0;
@@ -32,7 +32,9 @@ int	ft_atoi(const char *nbr)
 		n = n * 10 - (nbr[i] - '0');
 		i++;
 	}
+	if (n < INT_MIN || n > INT_MAX)
+		return (0);
 	if (neg == 1)
-		return (n);
-	return (-n);
+		return ((int)n);
+	return ((int)-n);
 }

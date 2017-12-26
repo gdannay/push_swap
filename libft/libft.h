@@ -19,6 +19,7 @@
 # include <wchar.h>
 # include <stdarg.h>
 # include <inttypes.h>
+# include <limits.h>
 
 # define BINA "01"
 # define DECI "0123456789"
@@ -134,7 +135,7 @@ size_t				ft_wstrlen(wchar_t *str);
 wchar_t				*ft_wstrdup(const wchar_t *str);
 int					ft_printf(char *str, ...);
 t_flag				*create_flag(void);
-int					length_nbr(int n);
+int					ft_nbrlen(int n);
 t_flag				*check_carac(char *str, int *i);
 void				fill_wp(t_flag *tmp, va_list va);
 void				check_width(char *str, int *i, t_flag *new, int *ret);

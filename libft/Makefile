@@ -80,7 +80,7 @@ SRCS	=		ft_memset.c		\
 				ft_strndup.c	\
 				ft_bchar.c		\
 				ft_chartostr.c	\
-				ft_lennbr.c		\
+				ft_nbrlen.c		\
 				ft_atoi_base.c	\
 				ft_wstrlen.c	\
 				ft_printf.c		\
@@ -94,7 +94,8 @@ SRCS	=		ft_memset.c		\
 				display_flag.c	\
 				display_wps.c	\
 				display_uni.c	\
-				display_wstr.c
+				display_wstr.c	\
+				get_next_line.c
 
 CC		=		gcc
 
