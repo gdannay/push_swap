@@ -2,25 +2,25 @@
 
 static t_elem	*new_elem(char *av, t_elem **a_pile, t_elem *tmp)
 {
-	int		nb;
+	long	nb;
 	t_elem	*new;
-	int		pm;
+	int		i;
 
-	if (!av)
+	i = 0;
+	if (!av || !av[0])
 		return (NULL);
-	nb = ft_atoi(av);
-	pm = 0;
-	if (av[0] && (av[0] == '+' || av[0] == '-'))
-		pm = 1;
-	if (nb == 0 && av[0 + pm] && av[0 + pm] != '0')
+	if (av[0] && (av[0] == '-' || av[0] == '+'))
+		i++;
+	while (av[i] && ft_isdigit(av[i]))
+		i++;
+	if (av[i] != '\0')
 		return (NULL);
-	if (av[0] && av[0] == '-' && av[1] && av[1] != '0')
-		pm = 0;
-	if ((ft_nbrlen(nb) + pm) != (int)ft_strlen(av))
+	nb = ft_atol(av);
+	if (nb < INT_MIN || nb > INT_MAX)
 		return (NULL);
 	if ((new = (t_elem *)malloc(sizeof(t_elem))) == NULL)
 		return (NULL);
-	new->nb = nb;
+	new->nb = (int)nb;
 	new->next = NULL;
 	if (*a_pile == NULL)
 		*a_pile = new;

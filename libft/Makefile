@@ -95,7 +95,8 @@ SRCS	=		ft_memset.c		\
 				display_wps.c	\
 				display_uni.c	\
 				display_wstr.c	\
-				get_next_line.c
+				get_next_line.c	\
+				ft_atol.c
 
 CC		=		gcc
 

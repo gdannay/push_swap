@@ -4,6 +4,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include <stdio.h>
+# include <limits.h>
 
 typedef struct		s_elem
 {

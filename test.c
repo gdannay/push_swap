@@ -1,7 +1,6 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include <unistd.h>
 
-int	main(int ac, char **av)
+int	main()
 {
-	printf("%d\n", atoi(av[1]));
+	write(1, \x31B[0m"Red", 3);
 }

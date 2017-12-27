@@ -165,5 +165,6 @@ int					manage_buff(char *buff, char *str, size_t length);
 int					add_right(char *buff, char *str, int index, size_t length);
 int					add_char_right(char *buff, char c, int index, size_t length);
 int					add_char_left(char *buff, char c, int *index, size_t length);
+long				ft_atol(const char *nbr);
 
 #endif
