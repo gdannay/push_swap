@@ -5,6 +5,8 @@
 # include "get_next_line.h"
 # include <stdio.h>
 # include <limits.h>
+# define C_NONE "\033[0m"
+# define C_RED "\033[31m"
 
 typedef struct		s_elem
 {
