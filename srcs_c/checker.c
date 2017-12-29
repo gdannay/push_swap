@@ -14,16 +14,18 @@ int		main(int ac, char **av)
 	t_elem	*a_pile;
 	t_elem	*b_pile;
 	char	*com;
+	int		flag;
 
+	flag = 0;
 	a_pile = NULL;
 	b_pile = NULL;
 	if (ac > 1)
 	{
-		if ((a_pile = check_args(ac, av)) == NULL)
+		if ((a_pile = check_args(ac, av, &flag)) == NULL)
 			return (1);
 		while (get_next_line(0, &com))
 		{
-			if (exec_command(&a_pile, &b_pile, com))
+			if (exec_command(&a_pile, &b_pile, com, flag))
 				return (error(&a_pile, &b_pile, &com));
 			ft_strdel(&com);
 		}

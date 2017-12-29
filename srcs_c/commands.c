@@ -1,6 +1,8 @@
 #include "checker.h"
 
-int		push(t_elem **lose, t_elem **get)
+
+
+int		push(t_elem **lose, t_elem **get, int flag)
 {
 	t_elem *tmp;
 
@@ -14,7 +16,7 @@ int		push(t_elem **lose, t_elem **get)
 	return (0);
 }
 
-int		swap(t_elem **pile)
+int		swap(t_elem **pile, t_elem **second, int flag)
 {
 	t_elem *tmp;
 
@@ -28,7 +30,7 @@ int		swap(t_elem **pile)
 	return (0);
 }
 
-int		rotate(t_elem **pile)
+int		rotate(t_elem **pile, t_elem **second, int flag)
 {
 	t_elem *tmp;
 
@@ -44,7 +46,7 @@ int		rotate(t_elem **pile)
 	return (0);
 }
 
-int		rev_rotate(t_elem **pile)
+int		rev_rotate(t_elem **pile, t_elem **second, int flag)
 {
 	t_elem *tmp;
 	t_elem *tmp2;
