@@ -43,7 +43,7 @@ static int		check_double(t_elem *a_pile, int n)
 	return (0);
 }
 
-static t_elem	usage(int flag)
+static t_elem	*usage(int flag)
 {
 	ft_printf("checker: illegal option -- %c\n", flag * -1);
 	write(2, "usage: checker [-cv] [integers] [commands]\n", 43);

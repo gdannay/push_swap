@@ -18,10 +18,10 @@ typedef struct		s_elem
 
 t_elem				*check_args(int ac, char **av, int *flag);
 void				del_lst(t_elem **a_pile);
-int					exec_command(t_elem **a_pile, t_elem **b_pile, char *com, int flag);
-int					push(t_elem **lose, t_elem **get, int flag);
-int					swap(t_elem **pile, t_elem **second, int flag);
-int					rotate(t_elem **pile, t_elem **second, int flag);
-int					rev_rotate(t_elem **pile, t_elem **second, int flag);
+int					exec_command(t_elem **a_pile, t_elem **b_pile, char *com);
+int					push(t_elem **lose, t_elem **get);
+int					swap(t_elem **pile);
+int					rotate(t_elem **pile);
+int					rev_rotate(t_elem **pile);
 
 #endif

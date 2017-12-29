@@ -2,21 +2,21 @@
 
 
 
-int		push(t_elem **lose, t_elem **get, int flag)
+int		push(t_elem **lose, t_elem **get)
 {
 	t_elem *tmp;
 
 	if (*lose)
 	{
-		tmp = *get;
-		*get = *lose;
-		(*get)->next = tmp;
+		tmp = *lose;
 		*lose = (*lose)->next;
+		tmp->next = *get;;
+		(*get) = tmp;
 	}
 	return (0);
 }
 
-int		swap(t_elem **pile, t_elem **second, int flag)
+int		swap(t_elem **pile)
 {
 	t_elem *tmp;
 
@@ -30,7 +30,7 @@ int		swap(t_elem **pile, t_elem **second, int flag)
 	return (0);
 }
 
-int		rotate(t_elem **pile, t_elem **second, int flag)
+int		rotate(t_elem **pile)
 {
 	t_elem *tmp;
 
@@ -46,7 +46,7 @@ int		rotate(t_elem **pile, t_elem **second, int flag)
 	return (0);
 }
 
-int		rev_rotate(t_elem **pile, t_elem **second, int flag)
+int		rev_rotate(t_elem **pile)
 {
 	t_elem *tmp;
 	t_elem *tmp2;
