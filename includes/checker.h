@@ -23,5 +23,9 @@ int					push(t_elem **lose, t_elem **get);
 int					swap(t_elem **pile);
 int					rotate(t_elem **pile);
 int					rev_rotate(t_elem **pile);
+t_elem				*new_elem(char *av, t_elem **a_pile, t_elem *tmp);
+int					get_command(t_elem **a_pile, t_elem **b_pile, int flag);
+int					check_order(t_elem *a_pile, t_elem *b_pile);
+void				print_pile(t_elem *a_pile, t_elem *b_pile);
 
 #endif

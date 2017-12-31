@@ -1,10 +1,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-typedef struct		s_elem
-{
-	int				nb;
-	struct s_elem	next;
-}					t_elem;
+# include "checker.h"
+
+void		push_swap(t_elem **a_pile, t_elem **b_pile, int size);
 
 #endif

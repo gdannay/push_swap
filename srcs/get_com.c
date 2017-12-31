@@ -36,3 +36,48 @@ int			exec_command(t_elem **a_pile, t_elem **b_pile, char *com)
 	else
 		return (1);
 }
+static int	error(t_elem **a_pile, t_elem **b_pile, char **com)
+{
+	ft_strdel(com);
+	write(2, "Error\n", 6);
+	del_lst(a_pile);
+	del_lst(b_pile);
+	return (1);
+}
+
+void	print_pile(t_elem *a_pile, t_elem *b_pile)
+{
+	t_elem *tmp;
+
+	tmp = a_pile;
+	ft_printf("\nA:");
+	while (tmp)
+	{
+		ft_printf(" %d", tmp->nb);
+		tmp = tmp->next;
+	}
+	tmp = b_pile;
+	ft_printf("\nB:");
+	while (tmp)
+	{
+		ft_printf(" %d", tmp->nb);
+		tmp = tmp->next;
+	}
+	ft_printf("\n\n");
+}
+
+int		get_command(t_elem **a_pile, t_elem **b_pile, int flag)
+{
+	char	*com;
+
+	com = NULL;
+	while (get_next_line(0, &com))
+	{
+		if (exec_command(a_pile, b_pile, com))
+			return (error(a_pile, b_pile, &com));
+		if (flag & F_V)
+			print_pile(*a_pile, *b_pile);
+		ft_strdel(&com);
+	}
+	return (0);
+}

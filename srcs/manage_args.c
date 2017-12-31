@@ -1,34 +1,5 @@
 #include "checker.h"
 
-static t_elem	*new_elem(char *av, t_elem **a_pile, t_elem *tmp)
-{
-	long	nb;
-	t_elem	*new;
-	int		i;
-
-	i = 0;
-	if (!av || !av[0])
-		return (NULL);
-	if (av[0] && (av[0] == '-' || av[0] == '+'))
-		i++;
-	while (av[i] && ft_isdigit(av[i]))
-		i++;
-	if (av[i] != '\0')
-		return (NULL);
-	nb = ft_atol(av);
-	if (nb < INT_MIN || nb > INT_MAX)
-		return (NULL);
-	if ((new = (t_elem *)malloc(sizeof(t_elem))) == NULL)
-		return (NULL);
-	new->nb = (int)nb;
-	new->next = NULL;
-	if (*a_pile == NULL)
-		*a_pile = new;
-	else
-		tmp->next = new;
-	return (new);	
-}
-
 static int		check_double(t_elem *a_pile, int n)
 {
 	t_elem *tmp;
@@ -80,9 +51,9 @@ t_elem			*check_args(int ac, char **av, int *flag)
 
 	a_pile = NULL;
 	i = 1;
-	while (av[i][0] == '-')
+	while (flag && av[i] && av[i][0] == '-')
 	{
-		if ((*flag = *flag | manage_flag(av[i])) < 0)
+		if ((*flag = *flag | manage_flag(av[i])) <= 0)
 			return (usage(*flag));
 		i++;
 	}

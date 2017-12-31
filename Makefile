@@ -1,35 +1,46 @@
-NAME	=	checker
+NAME		=	checker
 
-SRCS	=	srcs_c/checker.c		\
-			srcs_c/manage_args.c	\
-			srcs_c/manage_lst.c		\
-			srcs_c/get_com.c		\
-			srcs_c/commands.c
+NAME2		=	push_swap
 
-OBJS	=	$(SRCS:.c=.o)
+SRCS		=	srcs/manage_args.c	\
+				srcs/manage_lst.c	\
+				srcs/get_com.c		\
+				srcs/commands.c		\
+				srcs/algo.c
 
-CC		=	gcc
+OBJS		=	$(SRCS:.c=.o)
 
-CFLAGS	=	-Wall -Werror -Wextra -I./includes -I./libft
+CC			=	gcc
 
-LFLAGS	=	libft/libft.a
+CFLAGS		=	-Wall -Werror -Wextra -I./includes -I./libft
 
-all		:	$(NAME)
+LFLAGS		=	libft/libft.a
 
-$(NAME)	:	$(OBJS)
-			make -C libft
-			$(CC) $(OBJS) $(LFLAGS) -o $(NAME)
+all			:	$(NAME) $(NAME2)
 
-%.o		:	%.c
-			$(CC) -o $@ -c $< $(CFLAGS)
+$(NAME)		:	$(OBJS) checker.o
+				make -C libft
+				$(CC) $(OBJS) checker.o $(LFLAGS) -o $(NAME)
 
-clean	:
-			make clean -C libft
-			rm -rf $(OBJS)
+$(NAME2)	:	$(OBJS) push_swap.o
+				$(CC) $(OBJS) push_swap.o $(LFLAGS) -o $(NAME2)
 
-fclean	:
-			make fclean -C libft
-			rm -rf $(OBJS)
-			rm -rf $(NAME)
+push_swap.o	:	srcs/push_swap.c
+				$(CC) -o $@ -c $< $(CFLAGS)
 
-re		:	fclean all
+checker.o	:	srcs/checker.c
+				$(CC) -o $@ -c $< $(CFLAGS)
+
+%.o			:	%.c
+				$(CC) -o $@ -c $< $(CFLAGS)
+
+clean		:
+				make clean -C libft
+				rm -rf $(OBJS)
+
+fclean		:
+				make fclean -C libft
+				rm -rf $(OBJS)
+				rm -rf $(NAME)
+
+re			:	fclean all
