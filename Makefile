@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gdannay <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/01/08 17:11:07 by gdannay           #+#    #+#              #
+#    Updated: 2018/01/08 17:17:15 by gdannay          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		=	checker
 
 NAME2		=	push_swap
@@ -18,17 +30,17 @@ LFLAGS		=	libft/libft.a
 
 all			:	$(NAME) $(NAME2)
 
-$(NAME)		:	$(OBJS) checker.o
+$(NAME)		:	$(OBJS) srcs/checker.o
 				make -C libft
-				$(CC) $(OBJS) checker.o $(LFLAGS) -o $(NAME)
+				$(CC) $(OBJS) srcs/checker.o $(LFLAGS) -o $(NAME)
 
-$(NAME2)	:	$(OBJS) push_swap.o
-				$(CC) $(OBJS) push_swap.o $(LFLAGS) -o $(NAME2)
+$(NAME2)	:	$(OBJS) srcs/push_swap.o
+				$(CC) $(OBJS) srcs/push_swap.o $(LFLAGS) -o $(NAME2)
 
-push_swap.o	:	srcs/push_swap.c
+srcs/push_swap.o	:	srcs/push_swap.c
 				$(CC) -o $@ -c $< $(CFLAGS)
 
-checker.o	:	srcs/checker.c
+srcs/checker.o	:	srcs/checker.c
 				$(CC) -o $@ -c $< $(CFLAGS)
 
 %.o			:	%.c
@@ -41,6 +53,7 @@ clean		:
 fclean		:
 				make fclean -C libft
 				rm -rf $(OBJS)
+				rm -rf $(NAME2)
 				rm -rf $(NAME)
 
 re			:	fclean all

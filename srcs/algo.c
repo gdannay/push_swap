@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/08 17:15:44 by gdannay           #+#    #+#             */
+/*   Updated: 2018/01/08 19:47:20 by gdannay          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	better_push(t_elem *a_pile, t_elem *b_pile)
@@ -5,7 +17,6 @@ static int	better_push(t_elem *a_pile, t_elem *b_pile)
 	t_elem	*tmp;
 
 	tmp = a_pile->next;
-	dprintf(1, "HERE");
 	if (a_pile && a_pile->nb == b_pile->nb + 1)
 		return (1);
 	while (tmp)
@@ -17,7 +28,7 @@ static int	better_push(t_elem *a_pile, t_elem *b_pile)
 	return (1);
 }
 
-static int	compute_rev(t_elem *a_pile, int size)
+/*static int	compute_rev(t_elem *a_pile, int size)
 {
 	t_elem	*tmp;
 	int		i;
@@ -32,37 +43,48 @@ static int	compute_rev(t_elem *a_pile, int size)
 	if (i >= (size / 2 + 1))
 		return (1);
 	return (0);
-}
+}*/
 
 static void	algo(t_elem **a_pile, t_elem **b_pile, int size)
 {
 	t_elem *last;
+	int i;
+	(void)size;
 
+	i = 0;
 	while (check_order(*a_pile, *b_pile))
 	{
-		if (*a_pile && (*a_pile)->next && (*a_pile)->next->next && !(check_order((*a_pile)->next, NULL)))
-			rotate(a_pile, "ra");
-		else if ((*a_pile)->nb < (*a_pile)->next->nb)
+		last = *a_pile;
+		while (last->next)
+			last = last->next;
+		if ((*a_pile)->nb > (*a_pile)->next->nb && (*a_pile)->nb > last->nb)
 		{
-			dprintf(1, "ICI\n");
-			last = *a_pile;
-			while (last->next)
-				last = last->next;
-			if ((*a_pile) && (*a_pile)->nb > last->nb)
+			if ((*b_pile) && (*a_pile)->nb > (*b_pile)->nb
+					&& better_push(*a_pile, *b_pile))
+				push(b_pile, a_pile, "pa");
+			if ((*b_pile) && (*b_pile)->next && (*b_pile)->nb < (*b_pile)->next->nb)
 			{
-				if ((*b_pile) && (*a_pile) && (*b_pile)->nb < (*a_pile)->nb && better_push(*a_pile, *b_pile))
-					push(b_pile, a_pile, "pa");
-				if (compute_rev(*a_pile, size))
-					rev_rotate(a_pile, "rra");
-				else
-					rotate(a_pile, "ra");
+				rotate(b_pile, NULL);
+				rotate(a_pile, "rr");
 			}
 			else
-				push(a_pile, b_pile, "pb");
+				rotate(a_pile, "ra");
 		}
-		else if (*a_pile)
+		else if ((*a_pile)->nb > (*a_pile)->next->nb && (*a_pile)->nb < last->nb)
+			swap(a_pile, "sa");
+		else if (check_order(*a_pile, NULL) && (*a_pile)->nb < (*a_pile)->next->nb && (*a_pile)->nb < last->nb)
+		{
 			push(a_pile, b_pile, "pb");
+			if ((*b_pile) && (*b_pile)->next && (*b_pile)->nb < (*b_pile)->next->nb)
+				rotate(b_pile, "rb");
+		}
+		else if (better_push(*a_pile, *b_pile))
+			push(b_pile, a_pile, "pa");
+		else
+			rotate(a_pile, "ra");
 		print_pile(*a_pile, *b_pile);
+		i++;
+		dprintf(1, "COUP = %d\n", i);
 	}
 }
 
