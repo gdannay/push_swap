@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:15:52 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/08 17:15:53 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/09 12:34:42 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main(int ac, char **av)
 		if ((a_pile = check_args(ac, av, &flag)) == NULL
 		|| get_command(&a_pile, &b_pile, flag))
 			return (1);
-		if (check_order(a_pile, b_pile))
+		if (check_order(a_pile, b_pile, 0))
 			ft_printf("KO\n");
 		else
 			ft_printf("OK\n");

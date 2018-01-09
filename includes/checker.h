@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/09 12:33:10 by gdannay           #+#    #+#             */
+/*   Updated: 2018/01/09 12:33:18 by gdannay          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CHECKER_H
 # define CHECKER_H
 
@@ -25,7 +37,7 @@ int					rotate(t_elem **pile, char *print);
 int					rev_rotate(t_elem **pile, char *print);
 t_elem				*new_elem(char *av, t_elem **a_pile, t_elem *tmp);
 int					get_command(t_elem **a_pile, t_elem **b_pile, int flag);
-int					check_order(t_elem *a_pile, t_elem *b_pile);
+int					check_order(t_elem *a_pile, t_elem *b_pile, int rev);
 void				print_pile(t_elem *a_pile, t_elem *b_pile);
 
 #endif

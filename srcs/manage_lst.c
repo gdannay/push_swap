@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:16:25 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/08 19:47:39 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/09 12:34:22 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,20 @@ void	del_lst(t_elem **pile)
 	*pile = NULL;
 }
 
-int		check_order(t_elem *a_pile, t_elem *b_pile)
+int		check_order(t_elem *a_pile, t_elem *b_pile, int rev)
 {
 	t_elem	*tmp;
 
 	tmp = a_pile;
 	if (b_pile)
 		return (1);
+	if (rev)
+	{
+		while (tmp && tmp->next && tmp->nb > tmp->next->nb)
+			tmp = tmp->next;
+		if (tmp->next == NULL)
+			return (0);
+	}
 	else
 	{
 		while (tmp && tmp->next && tmp->nb < tmp->next->nb)
