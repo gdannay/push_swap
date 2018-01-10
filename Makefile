@@ -6,7 +6,7 @@
 #    By: gdannay <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/08 17:11:07 by gdannay           #+#    #+#              #
-#    Updated: 2018/01/09 12:27:39 by gdannay          ###   ########.fr        #
+#    Updated: 2018/01/10 13:33:10 by gdannay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,9 +49,13 @@ srcs/checker.o	:	srcs/checker.c
 clean		:
 				make clean -C libft
 				rm -rf $(OBJS)
+				rm -rf srcs/checker.o
+				rm -rf srcs/push_swap.o
 
 fclean		:
 				make fclean -C libft
+				rm -rf srcs/checker.o
+				rm -rf srcs/push_swap.o
 				rm -rf $(OBJS)
 				rm -rf $(NAME2)
 				rm -rf $(NAME)
