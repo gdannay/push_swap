@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:15:44 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/10 17:37:21 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/12 17:29:50 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ static void	algo(t_elem **a_pile, t_elem **b_pile)
 
 void		push_swap(t_elem **a_pile, t_elem **b_pile, int size)
 {
-	(void)size;
+	if (0)
 	algo(a_pile, b_pile);
+	algoa(a_pile, b_pile, size, 0, 0);
 }
