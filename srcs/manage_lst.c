@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:16:25 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/09 12:34:22 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/13 17:03:02 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		check_order(t_elem *a_pile, t_elem *b_pile, int rev)
 	{
 		while (tmp && tmp->next && tmp->nb < tmp->next->nb)
 			tmp = tmp->next;
-		if (tmp->next == NULL)
+		if (tmp && tmp->next == NULL)
 			return (0);
 	}
 	return (1);

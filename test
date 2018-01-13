@@ -1,0 +1,99 @@
+ICIa = 5 0
+RET1
+ICIa = 2 1
+LASIZE = 2
+pb
+
+A: 1 2 9 7
+B: 5
+
+pb
+
+A: 2 9 7
+B: 1 5
+
+ICI = 2 1
+ra
+sa
+rra
+
+A: 2 7 9
+B: 1 5
+
+HHAi = 7
+HHAi = 9
+HHAi = 5
+VIDE
+TESTA1 = 0
+FusionSize = 5 1
+FusionSizeA = 7 5 1 2
+pa1
+
+A: 1 2 7 9
+B: 5
+
+ra3
+
+A: 2 7 9 1
+B: 5
+
+Recursion = 1 5
+ra3
+
+A: 7 9 1 2
+B: 5
+
+Recursion = 2 5
+pa1
+
+A: 5 7 9 1 2
+B:
+
+ra3
+
+A: 7 9 1 2 5
+B:
+
+Recursion = 3 5
+ra3
+
+A: 9 1 2 5 7
+B:
+
+Recursion = 4 5
+ra4
+
+A: 1 2 5 7 9
+B:
+
+Recursion = 6 5
+rra3
+
+A: 9 1 2 5 7
+B:
+
+rra3
+
+A: 7 9 1 2 5
+B:
+
+rra3
+
+A: 5 7 9 1 2
+B:
+
+rra3
+
+A: 2 5 7 9 1
+B:
+
+rra3
+
+A: 1 2 5 7 9
+B:
+
+TEST = 5 0
+HHAi = 2
+HHAi = 5
+HHAi = 7
+HHAi = 9

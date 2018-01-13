@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:15:44 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/12 17:29:50 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/13 17:17:14 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,16 @@ static void	algo(t_elem **a_pile, t_elem **b_pile)
 	}
 }
 
-void		push_swap(t_elem **a_pile, t_elem **b_pile, int size)
+int			push_swap(t_elem **pile_a, t_elem **pile_b, int size)
 {
+	t_pile	*list;
+
 	if (0)
-	algo(a_pile, b_pile);
-	algoa(a_pile, b_pile, size, 0, 0);
+	algo(pile_a, pile_b);
+	if ((list = (t_pile *)malloc(sizeof(t_pile))) == NULL)
+		return (1);
+	list->a_pile = pile_a;
+	list->b_pile = pile_b;
+	algoa(list, size, 0, 1);
+	return (0);
 }

@@ -1,0 +1,255 @@
+ICIa = 7 0
+RET1
+ICIa = 3 1
+RET1
+ICIa = 1 1
+LASIZE = 1
+pb
+
+A: 5 4 0 1 -1 7
+B: 2
+
+ICI = 1 1
+sa
+
+A: 4 5 0 1 -1 7
+B: 2
+
+HHAi = 5
+VIDE
+TESTA2 = 0 3
+Fusionsize = 3
+LASTTMP = 0 2
+rb4
+
+A: 4 5 0 1 -1 7
+B: 2
+
+pb2
+
+A: 5 0 1 -1 7
+B: 4 2
+
+rb2
+
+A: 5 0 1 -1 7
+B: 2 4
+
+pb2
+
+A: 0 1 -1 7
+B: 5 2 4
+
+rb2
+
+A: 0 1 -1 7
+B: 2 4 5
+
+NOOOOON = 4 3
+rrb3
+
+A: 0 1 -1 7
+B: 5 2 4
+
+rrb3
+
+A: 0 1 -1 7
+B: 4 5 2
+
+rrb3
+
+A: 0 1 -1 7
+B: 2 4 5
+
+TEST = 3 1
+VIDE
+RET2
+ICIa = 4 1
+RET1
+ICIa = 2 0
+LASIZE = 2
+pb
+
+A: 1 -1 7
+B: 0 2 4 5
+
+pb
+
+A: -1 7
+B: 1 0 2 4 5
+
+ICI = 2 0
+sb
+
+A: -1 7
+B: 0 1 2 4 5
+
+TESTA1 = 3
+FusionSize = 4 0
+FusionSizeA = 7 1 1 2
+LASTTMP = 7 2
+ra3
+
+A: 7 -1
+B: 0 1 2 4 5
+
+Recursion = 1 4
+pa1
+
+A: 0 7 -1
+B: 1 2 4 5
+
+ra3
+
+A: 7 -1 0
+B: 1 2 4 5
+
+Recursion = 2 4
+pa1
+
+A: 1 7 -1 0
+B: 2 4 5
+
+ra3
+
+A: 7 -1 0 1
+B: 2 4 5
+
+Recursion = 3 4
+ra4
+
+A: -1 0 1 7
+B: 2 4 5
+
+Recursion = 5 4
+rra3
+
+A: 7 -1 0 1
+B: 2 4 5
+
+rra3
+
+A: 1 7 -1 0
+B: 2 4 5
+
+rra3
+
+A: 0 1 7 -1
+B: 2 4 5
+
+rra3
+
+A: -1 0 1 7
+B: 2 4 5
+
+TEST = 4 1
+VIDE
+HHAi = 0
+HHAi = 1
+HHAi = 7
+HHAi = 4
+HHAi = 5
+VIDE
+TESTA1 = 0
+FusionSize = 7 2
+FusionSizeA = 0 4 1 3
+FusionSizeA = 1 5 2 3
+ra3
+
+A: 0 1 7 -1
+B: 2 4 5
+
+Recursion = 1 7
+ra3
+
+A: 1 7 -1 0
+B: 2 4 5
+
+Recursion = 2 7
+ra3
+
+A: 7 -1 0 1
+B: 2 4 5
+
+Recursion = 3 7
+pa1
+
+A: 2 7 -1 0 1
+B: 4 5
+
+ra3
+
+A: 7 -1 0 1 2
+B: 4 5
+
+Recursion = 4 7
+pa1
+
+A: 4 7 -1 0 1 2
+B: 5
+
+ra3
+
+A: 7 -1 0 1 2 4
+B: 5
+
+Recursion = 5 7
+pa1
+
+A: 5 7 -1 0 1 2 4
+B:
+
+ra3
+
+A: 7 -1 0 1 2 4 5
+B:
+
+Recursion = 6 7
+ra4
+
+A: -1 0 1 2 4 5 7
+B:
+
+Recursion = 8 7
+rra3
+
+A: 7 -1 0 1 2 4 5
+B:
+
+rra3
+
+A: 5 7 -1 0 1 2 4
+B:
+
+rra3
+
+A: 4 5 7 -1 0 1 2
+B:
+
+rra3
+
+A: 2 4 5 7 -1 0 1
+B:
+
+rra3
+
+A: 1 2 4 5 7 -1 0
+B:
+
+rra3
+
+A: 0 1 2 4 5 7 -1
+B:
+
+rra3
+
+A: -1 0 1 2 4 5 7
+B:
+
+TEST = 7 0
+HHAi = 0
+HHAi = 1
+HHAi = 2
+HHAi = 4
+HHAi = 5
+HHAi = 7
