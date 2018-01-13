@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 12:33:10 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/09 12:33:18 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/13 17:22:16 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ typedef struct		s_elem
 t_elem				*check_args(int ac, char **av, int *flag);
 void				del_lst(t_elem **a_pile);
 int					exec_command(t_elem **a_pile, t_elem **b_pile, char *com);
-int					push(t_elem **lose, t_elem **get, char *print);
-int					swap(t_elem **pile, char *print);
-int					rotate(t_elem **pile, char *print);
-int					rev_rotate(t_elem **pile, char *print);
+int					push(t_elem **lose, t_elem **get, char *print, int com);
+int					swap(t_elem **pile, char *print, int com);
+int					rotate(t_elem **pile, char *print, int com);
+int					rev_rotate(t_elem **pile, char *print, int com);
 t_elem				*new_elem(char *av, t_elem **a_pile, t_elem *tmp);
 int					get_command(t_elem **a_pile, t_elem **b_pile, int flag);
 int					check_order(t_elem *a_pile, t_elem *b_pile, int rev);

@@ -6,12 +6,12 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:15:44 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/13 17:17:14 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/13 17:27:15 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "test.c"
+/*#include "test.c"
 
 static void	algo(t_elem **a_pile, t_elem **b_pile)
 {
@@ -99,14 +99,12 @@ static void	algo(t_elem **a_pile, t_elem **b_pile)
 		else
 			call_op(&rotate, NULL, a_pile, b_pile, "ra", &i);
 	}
-}
+}*/
 
 int			push_swap(t_elem **pile_a, t_elem **pile_b, int size)
 {
 	t_pile	*list;
 
-	if (0)
-	algo(pile_a, pile_b);
 	if ((list = (t_pile *)malloc(sizeof(t_pile))) == NULL)
 		return (1);
 	list->a_pile = pile_a;
