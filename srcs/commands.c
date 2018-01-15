@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:15:58 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/15 15:23:45 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/15 17:34:34 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	add_com(t_com **first, int intcom)
 	}
 }
 
-int		push(t_elem **lose, t_elem **get, char *print, int intcom, t_pile *list)
+int		push(t_elem **lose, t_elem **get, int intcom, t_pile *list)
 {
 	t_elem *tmp;
 
@@ -65,14 +65,12 @@ int		push(t_elem **lose, t_elem **get, char *print, int intcom, t_pile *list)
 		tmp->next = *get;
 		(*get) = tmp;
 	}
-	if (0 && print)
-		ft_printf("%s\n", print);
 	if (list)
 		add_com(&(list->com), intcom);
 	return (0);
 }
 
-int		swap(t_elem **pile, char *print, int intcom, t_pile *list)
+int		swap(t_elem **pile, int intcom, t_pile *list)
 {
 	t_elem *tmp;
 
@@ -83,14 +81,12 @@ int		swap(t_elem **pile, char *print, int intcom, t_pile *list)
 		tmp->next = (*pile);
 		(*pile) = tmp;
 	}
-	if (0 && print)
-		ft_printf("%s\n", print);
 	if (list)
 		add_com(&(list->com), intcom);
 	return (0);
 }
 
-int		rotate(t_elem **pile, char *print, int intcom, t_pile *list)
+int		rotate(t_elem **pile, int intcom, t_pile *list)
 {
 	t_elem *tmp;
 
@@ -103,14 +99,12 @@ int		rotate(t_elem **pile, char *print, int intcom, t_pile *list)
 		(*pile) = (*pile)->next;
 		tmp->next->next = NULL;
 	}
-	if (0 &&print)
-		ft_printf("%s\n", print);
 	if (list)
 		add_com(&(list->com), intcom);
 	return (0);
 }
 
-int		rev_rotate(t_elem **pile, char *print, int intcom, t_pile *list)
+int		rev_rotate(t_elem **pile, int intcom, t_pile *list)
 {
 	t_elem *tmp;
 	t_elem *tmp2;
@@ -125,8 +119,6 @@ int		rev_rotate(t_elem **pile, char *print, int intcom, t_pile *list)
 		tmp2->next = (*pile);
 		(*pile) = tmp2;
 	}
-	if (0 && print)
-		ft_printf("%s\n", print);
 	if (list)
 		add_com(&(list->com), intcom);
 	return (0);

@@ -6,7 +6,7 @@
 #    By: gdannay <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/08 17:11:07 by gdannay           #+#    #+#              #
-#    Updated: 2018/01/15 14:56:00 by gdannay          ###   ########.fr        #
+#    Updated: 2018/01/15 18:30:45 by gdannay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,11 @@ SRCS		=	srcs/manage_args.c		\
 				srcs/get_com.c			\
 				srcs/commands.c			\
 				srcs/algo.c				\
-				srcs/balgo.c			\
-				srcs/manage_commands.c
+				srcs/algobig.c			\
+				srcs/algosmall.c		\
+				srcs/manage_commands.c	\
+				srcs/computation.c		\
+				srcs/fusion.c
 
 OBJS		=	$(SRCS:.c=.o)
 

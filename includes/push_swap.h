@@ -6,13 +6,24 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 20:20:45 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/15 11:42:48 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/15 18:31:23 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# define PA 1
+# define PB 2
+# define SA 3
+# define SB 4
+# define SS 5
+# define RRA 6
+# define RRB 7
+# define RRR 8
+# define RA 9
+# define RB 10
+# define RR 11
 # include "checker.h"
 
 typedef struct		s_com
@@ -23,7 +34,12 @@ typedef struct		s_com
 }					t_com;
 
 int					push_swap(t_elem **a_pile, t_elem **b_pile, int size);
-int					algoa(t_pile *list, int size, int rest, int ret);
+int					algobig(t_pile *list, int size, int rest, int ret);
+void				algosmall(t_elem **a, t_elem **b, t_pile *list);
 void				manage_commands(t_com **com);
+int					c_size(t_elem *pile);
+int					check_sort(t_elem *pile, int size, int rev);
+void				fusionb(t_elem ** a_pile, t_elem **b_pile, int size, t_pile *list);
+void				fusiona(t_elem ** a_pile, t_elem **b_pile, int size, t_pile *list);
 
 #endif
