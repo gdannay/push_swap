@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:16:34 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/13 15:14:01 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/15 14:55:48 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		main(int ac, char **av)
 	}
 	del_lst(&a_pile);
 	del_lst(&b_pile);
+//	while (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 20:20:45 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/13 17:27:37 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/15 11:42:48 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "checker.h"
-
-typedef struct		s_pile
-{
-	t_elem			**a_pile;
-	t_elem			**b_pile;
-}					t_pile;
 
 typedef struct		s_com
 {
@@ -30,5 +24,6 @@ typedef struct		s_com
 
 int					push_swap(t_elem **a_pile, t_elem **b_pile, int size);
 int					algoa(t_pile *list, int size, int rest, int ret);
+void				manage_commands(t_com **com);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:15:44 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/13 17:27:15 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/15 14:52:41 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,19 @@ int			push_swap(t_elem **pile_a, t_elem **pile_b, int size)
 		return (1);
 	list->a_pile = pile_a;
 	list->b_pile = pile_b;
+	list->com = NULL;
 	algoa(list, size, 0, 1);
+//	print_pile(*(list->a_pile), *(list->b_pile));
+//	t_com *tmp;
+//	tmp = list->com;
+//	while (tmp)
+//	{
+//		dprintf(1, "TEST = %d\n", tmp->com);
+//		tmp = tmp->next;
+//	}
+	list->com->prev = NULL;
+//	dprintf(1, "\n\n");
+	manage_commands(&(list->com));
+	free(list);
 	return (0);
 }

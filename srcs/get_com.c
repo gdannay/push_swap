@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:16:06 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/13 17:25:39 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/15 10:59:10 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,35 @@
 int			exec_command(t_elem **a_pile, t_elem **b_pile, char *com)
 {
 	if (!(ft_strcmp(com, "sa")))
-		return (swap(a_pile, NULL, 0));
+		return (swap(a_pile, NULL, 0, NULL));
 	else if (!(ft_strcmp(com, "sb")))
-		return (swap(b_pile, NULL, 0));
+		return (swap(b_pile, NULL, 0, NULL));
 	else if (!(ft_strcmp(com, "ss")))
 	{
-		swap(a_pile, NULL, 0);
-		return (swap(b_pile, NULL, 0));
+		swap(a_pile, NULL, 0, NULL);
+		return (swap(b_pile, NULL, 0, NULL));
 	}
 	else if (!(ft_strcmp(com, "pa")))
-		return (push(b_pile, a_pile, NULL, 0));
+		return (push(b_pile, a_pile, NULL, 0, NULL));
 	else if (!(ft_strcmp(com, "pb")))
-		return (push(a_pile, b_pile, NULL, 0));
+		return (push(a_pile, b_pile, NULL, 0, NULL));
 	else if (!(ft_strcmp(com, "ra")))
-		return (rotate(a_pile, NULL, 0));
+		return (rotate(a_pile, NULL, 0, NULL));
 	else if (!(ft_strcmp(com, "rb")))
-		return (rotate(b_pile, NULL, 0));
+		return (rotate(b_pile, NULL, 0, NULL));
 	else if (!(ft_strcmp(com, "rr")))
 	{
-		rotate(a_pile, NULL, 0);
-		return (rotate(b_pile, NULL, 0));
+		rotate(a_pile, NULL, 0, NULL);
+		return (rotate(b_pile, NULL, 0, NULL));
 	}
 	else if (!(ft_strcmp(com, "rra")))
-		return (rev_rotate(a_pile, NULL, 0));
+		return (rev_rotate(a_pile, NULL, 0, NULL));
 	else if (!(ft_strcmp(com, "rrb")))
-		return (rev_rotate(b_pile, NULL, 0));
+		return (rev_rotate(b_pile, NULL, 0, NULL));
 	else if (!(ft_strcmp(com, "rrr")))
 	{
-		rev_rotate(a_pile, NULL, 0);
-		return (rev_rotate(b_pile, NULL, 0));
+		rev_rotate(a_pile, NULL, 0, NULL);
+		return (rev_rotate(b_pile, NULL, 0, NULL));
 	}
 	else
 		return (1);
