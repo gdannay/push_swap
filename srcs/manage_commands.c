@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:20:28 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/15 15:11:36 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/15 15:47:47 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,27 @@ static t_com	*merge_com(t_com **merge, t_com **secmer)
 //	dprintf(1, "MERGE = %d %d\n", (*merge)->com, (*secmer)->com);
 	tmp = (*secmer)->next;
 //	dprintf(1, "MERGE = %d %d %d\n", (*merge)->com, (*secmer)->com, tmp->com);
-	if ((*merge)->com == 3 && ((*secmer)->com == 4))
+	if (((*merge)->com == 3 && (*secmer)->com == 4)
+		|| ((*merge)->com == 4 && (*secmer)->com == 3))
 		(*merge)->com = 5;
-	else if ((*merge)->com == 6 && ((*secmer)->com == 7))
+	else if (((*merge)->com == 6 && ((*secmer)->com == 7))
+		|| ((*merge)->com == 7 && (*secmer)->com == 6))
 		(*merge)->com = 8;
-	else if ((*merge)->com == 9 && ((*secmer)->com == 10))
+	else if (((*merge)->com == 9 && (*secmer)->com == 10)
+		|| ((*merge)->com == 10 && (*secmer)->com == 9))
 		(*merge)->com = 11;
+	else if (((*merge)->com == 8 && (*secmer)->com == 10)
+		|| ((*merge)->com == 10 && (*secmer)->com == 8))
+		(*merge)->com = 6;
+	else if (((*merge)->com == 8 && (*secmer)->com == 9)
+		|| ((*merge)->com == 9 && (*secmer)->com == 8))
+		(*merge)->com = 7;
+	else if (((*merge)->com == 7 && (*secmer)->com == 11)
+		|| ((*merge)->com == 11 && (*secmer)->com == 7))
+		(*merge)->com = 9;
+	else if (((*merge)->com == 6 && (*secmer)->com == 11)
+		|| ((*merge)->com == 11 && (*secmer)->com == 6))
+		(*merge)->com = 10;
 	free(*secmer);
 	(*merge)->next = tmp;
 //	dprintf(1, "MERGE = %d %d %d %d\n", (*merge)->com, (*secmer)->com, tmp->com, (*merge)->next->com);
@@ -128,7 +143,18 @@ void	manage_commands(t_com **first)
 			tmp = delete_coms(first, &tmp, &(tmp->next));
 		else if (tmp && tmp->next &&
 				((tmp->com == 3 && tmp->next->com == 4) ||
+				(tmp->com == 4 && tmp->next->com == 3) ||
 				(tmp->com == 6 && tmp->next->com == 7) ||
+				(tmp->com == 7 && tmp->next->com == 6) ||
+				(tmp->com == 8 && tmp->next->com == 10) ||
+				(tmp->com == 10 && tmp->next->com == 8) ||
+				(tmp->com == 11 && tmp->next->com == 7) ||
+				(tmp->com == 7 && tmp->next->com == 11) ||
+				(tmp->com == 11 && tmp->next->com == 6) ||
+				(tmp->com == 6 && tmp->next->com == 11) ||
+				(tmp->com == 9 && tmp->next->com == 8) ||
+				(tmp->com == 8 && tmp->next->com == 9) ||
+				(tmp->com == 10 && tmp->next->com == 9) ||
 				(tmp->com == 9 && tmp->next->com == 10)))
 			tmp = merge_com(&tmp, &(tmp->next));
 		else
