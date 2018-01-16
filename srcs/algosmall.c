@@ -6,167 +6,124 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 18:20:43 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/15 18:52:46 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/16 20:05:49 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "test.c"
 
-static void push_rotate(t_elem **a, t_elem **b, t_pile *list)
+static t_elem	*find_last(t_elem *pile)
 {
-	t_elem *max;
-	t_elem *min;
-	t_elem *lasta;
-	t_elem *minb;
-	t_elem *maxb;
-	t_elem *lastb;
+	t_elem	*tmp;
 
-	max = c_max(*a);
-	min = c_min(*a);
-	lasta = find_last(*a);
-	maxb = c_max(*b);
-	minb = c_min(*b);
-	lastb = find_last(*a);
-
-	while ((*a) && (*b) && ((*a)->nb > (*b)->nb)
-			&& (((*b)->nb > lasta->next->nb) || (lasta->next == max)))
-	{
-		push(b, a, PA, list);
-		maxb = c_max(*b);
-		minb = c_min(*b);
-	}
-	if (lastb && lastb->next && (*b) && (*b)->next
-			&& ((*b)->nb < (*b)->next->nb || ((*b) == minb
-					&& (*b)->next == maxb)) && ((*b)->nb < lastb->next->nb
-				|| ((*b) == maxb && lastb->next == min)))
-	{
-		rotate(a, 0, NULL);
-		rotate(b, RR, list);
-	}
-	else
-		rotate(a, RA, list);
+	tmp = pile;
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	return (tmp);
 }
 
-static void swap_piles(t_elem **a, t_elem **b, t_pile *list)
+int          better_push(t_elem *a_pile, t_elem *b_pile)
 {
-	t_elem *max;
-	t_elem *min;
-	t_elem *lasta;
-	t_elem *minb;
-	t_elem *maxb;
-	t_elem *lastb;
+	t_elem	*tmp;
 
-	max = c_max(*a);
-	min = c_min(*a);
-	lasta = find_last(*a);
-	maxb = c_max(*b);
-	minb = c_min(*b);
-	lastb = find_last(*a);
-	if ((*b) && (*b)->next && (*b)->next->next
-			&& ((*b)->nb < (*b)->next->nb
-				|| ((*b) == max && (*b)->next == min))
-			&& (*b)->nb > lastb->next->nb)
+	if (a_pile && a_pile->next)
+		tmp = a_pile->next;
+	if (b_pile && a_pile && a_pile->nb == b_pile->nb + 1)
+		return (1);
+	while (tmp)
 	{
-		swap(b, 0, list);
-		swap(a, SS, list);
+		if (b_pile && tmp->nb < a_pile->nb && tmp->nb > b_pile->nb)
+			return (0);
+		tmp = tmp->next;
 	}
-	else
-		swap(a, SA, list);
+	return (1);
 }
 
-static void		rev_rotate_piles(t_elem **a, t_elem **b, t_pile *list)
+/*static t_elem 	*c_min(t_elem *pile)
+  {
+  t_elem	*tmp;
+  t_elem	*min;
+
+  tmp = pile;
+  min = tmp;
+  while (tmp)
+  {
+  if (tmp->nb < min->nb)
+  min = tmp;
+  tmp = tmp->next;
+  }
+  return (min);
+  }
+
+  static t_elem 	*c_max(t_elem *pile)
+  {
+  t_elem	*tmp;
+  t_elem	*max;
+
+  tmp = pile;
+  max = tmp;
+  while (tmp)
+  {
+  if (tmp->nb < max->nb)
+  max = tmp;
+  tmp = tmp->next;
+  }
+  return (max);
+  }*/
+
+void	algosmall(t_elem **a_pile, t_elem **b_pile, t_pile *list)
 {
-	t_elem *max;
-	t_elem *min;
-	t_elem *lasta;
-	t_elem *minb;
-	t_elem *maxb;
-	t_elem *lastb;
+	t_elem	*last;
 
-	max = c_max(*a);
-	min = c_min(*a);
-	lasta = find_last(*a);
-	maxb = c_max(*b);
-	minb = c_min(*b);
-	lastb = find_last(*a);
-	if ((*b) && ((*b)->nb > lastb->next->nb
-				|| ((*b) == min && lastb->next == max))
-			&& (((*b)->nb < lastb->nb)
-				|| ((*b) == max && lastb == min)))
+	while (check_order(*a_pile, *b_pile))
 	{
-		rev_rotate(a, 0, NULL);
-		rev_rotate(a, RRA, list);
-	}
-	else
-		rev_rotate(a, RRA, list);
-}
-
-static void		algosmall_next(t_elem **a, t_elem **b, t_pile *list)
-{
-	t_elem *max;
-	t_elem *min;
-	t_elem *lasta;
-	t_elem *minb;
-	t_elem *maxb;
-	t_elem *lastb;
-
-	max = c_max(*a);
-	min = c_min(*a);
-	lasta = find_last(*a);
-	maxb = c_max(*b);
-	minb = c_min(*b);
-	lastb = find_last(*a);
-	if (check_order(*a, NULL) && (*a) && (*a)->next
-			&& ((*a)->nb < (*a)->next->nb
-				|| ((*a) == max && (*a)->next == min))
-			&& ((*a)->nb < lasta->next->nb || ((*a) == min && lasta->next == max)))
-	{
-		while ((*b) && (*b) != maxb)
-			rotate(b, RB, list);
-		push(a, b, PB, list);
-		if ((*a) && (*a)->next && ((*a)->nb < (*a)->next->nb
-					|| ((*a) == max && (*a)->next == min))
-				&& ((*a)->nb > lasta->next->nb || ((*a) == min && lasta->next == max)))
-			rotate(a, RA, list);
-	}
-	else if ((*a) && (*b) && ((*a)->nb > (*b)->nb)
-			&& (((*b)->nb > lasta->next->nb) || lasta->next == max))
-		push(b, a, PA, list);
-	else
-		rotate(a, RA, list);
-}
-
-void	algosmall(t_elem **a, t_elem **b, t_pile *list)
-{
-	t_elem *max;
-	t_elem *min;
-	t_elem *maxb;
-	t_elem *lasta;
-
-	while (check_order(*a, *b))
-	{
-		lasta = find_last(*a);
-		max = c_max(*a);
-		min = c_min(*a);
-		maxb = c_max(*b);
-		if (compute_rev(*a, min, max) && (!(*b) || (maxb && maxb->nb < min->nb)))
+		last = find_last(*a_pile);
+		if (*a_pile && (*a_pile)->next && (*a_pile)->nb > (*a_pile)->next->nb
+				&& (*a_pile)->nb > last->nb)
 		{
-			while (check_order(*a, NULL))
-				rev_rotate(a, RRA, list);
+			if ((*b_pile) && (*a_pile)->nb > (*b_pile)->nb
+					&& better_push(*a_pile, *b_pile))
+			{
+				push(b_pile, a_pile, PA, list);
+				dprintf(1, "PA1\n");
+			}
+			rotate(a_pile, RA, list);
+			dprintf(1, "RA\n");
 		}
-		else if (check_order(*a, NULL) && (*a) && (*a)->next &&
-				((*a)->nb < (*a)->next->nb || ((*a) == max && (*a)->next == min)) &&
-				((*a)->nb > lasta->next->nb || ((*a) == min && lasta->next == max)))
-			push_rotate(a, b, list);
-		else if ((*a) && (*a)->next && ((*a)->nb > (*a)->next->nb
-					|| ((*a) == min && (*a)->next == max)))
-			swap_piles(a, b, list);
-		else if ((*a) && ((*a)->nb < lasta->next->nb || ((*a) == max &&
-			lasta->next == min)) && (((*a)->nb > lasta->nb) || ((*a) == min && lasta == max)))
-			rev_rotate_piles(a, b, list);
-		else
-			algosmall_next(a, b, list);
+		else if ((*a_pile) && (*a_pile)->next && (*a_pile)->nb > (*a_pile)->next->nb
+				&& (*a_pile)->nb < last->nb)
+		{
+			swap(a_pile, SA, list);
+			dprintf(1, "SA\n");
+		}
+		else if (check_order(*a_pile, NULL) && (*a_pile) && (*a_pile)->next && (*a_pile)->nb < (*a_pile)->next->nb
+				&& (*a_pile)->nb < last->nb)
+		{
+			push(a_pile, b_pile, PB, list);
+			dprintf(1, "PB\n");
+			if ((*b_pile) && (*b_pile)->next && (*b_pile)->nb < (*b_pile)->next->nb)
+			{
+				rotate(b_pile, RB, list);
+				dprintf(1, "RB\n");
+			}
 
+		}
+		else if ((*b_pile) && better_push(*a_pile, *b_pile))
+		{
+			push(b_pile, a_pile, PA, list);
+			dprintf(1, "PA2\n");
+		}
+		else if ((*a_pile) && (*a_pile)->next && (*a_pile)->nb < (*a_pile)->next->nb
+				&& (*a_pile)->nb > last->nb)
+		{
+			rev_rotate(a_pile, RRA, list);
+			dprintf(1, "RRA\n");
+		}
+		else
+		{
+			rotate(a_pile, RA, list);
+			dprintf(1, "RA\n");
+		}
+		print_pile(*a_pile, *b_pile);
 	}
 }

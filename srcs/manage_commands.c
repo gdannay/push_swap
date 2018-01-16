@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:20:28 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/15 16:45:56 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/16 20:06:37 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,6 @@ void	manage_commands(t_com **first)
 		else
 			tmp = tmp->next;
 		i++;
-//		dprintf(1, "COUP = %d\n", i);
 	}
 	print_com(first);
 }
