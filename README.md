@@ -29,6 +29,7 @@ sb - swap b
 ss - swap both
 
 It displays OK if the stack is sorted and KO otherwise.
+
 Note: the -v flag enables to see both stack after each operation.
 
 ## Usage
