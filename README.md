@@ -1,5 +1,7 @@
 # push_swap
 
+## push_swap
+
 Push_swap is a sorting algorithm. The aim is to sort a stack A with the help of a second stack B and with the following
 operations allowed:
 
@@ -8,6 +10,8 @@ swap - switch the 2 first elements at the top of the stack. Does nothing if the 
 rotate - shifts all the element of the stack upwards. The first element becomes the last one.
 reverse rotate - shifts all the element of the stack downwards. The last element becomes the first one.
 
+
+## checker
 Checker enables to verify that the stack is sorted after operations are done. It takes numbers as arguments and reads the standard input for operations until CTRL + D is pressed. Operations are
 pa - push a
 pb - push b
