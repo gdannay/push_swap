@@ -35,9 +35,15 @@ Note: the -v flag enables to see both stack after each operation.
 ## Usage
 
 ./push swap "1 5 4 7 8"
+
 ./checker "1 5 4 7 8"
+
 sa
+
 pb
+
 rra
+
 pa
+
 KO
