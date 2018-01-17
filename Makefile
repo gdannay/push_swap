@@ -6,7 +6,7 @@
 #    By: gdannay <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/08 17:11:07 by gdannay           #+#    #+#              #
-#    Updated: 2018/01/15 18:30:45 by gdannay          ###   ########.fr        #
+#    Updated: 2018/01/17 10:53:00 by gdannay          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ SRCS		=	srcs/manage_args.c		\
 				srcs/manage_lst.c		\
 				srcs/get_com.c			\
 				srcs/commands.c			\
-				srcs/algo.c				\
 				srcs/algobig.c			\
 				srcs/algosmall.c		\
 				srcs/manage_commands.c	\
@@ -31,7 +30,7 @@ CC			=	gcc
 
 CFLAGS		=	-Wall -Werror -Wextra -I./includes -I./libft
 
-LFLAGS		=	libft/libft.a -g3 -fsanitize=address
+LFLAGS		=	libft/libft.a
 
 all			:	$(NAME) $(NAME2)
 

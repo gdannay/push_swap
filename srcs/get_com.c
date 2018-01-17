@@ -6,11 +6,34 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:16:06 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/15 17:37:00 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/17 11:13:03 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+static int	next_command(t_elem **a_pile, t_elem **b_pile, char *com)
+{
+	if (!(ft_strcmp(com, "rb")))
+		return (rotate(b_pile, 0, NULL));
+	else if (!(ft_strcmp(com, "rr")))
+	{
+		rotate(a_pile, 0, NULL);
+		return (rotate(b_pile, 0, NULL));
+	}
+	else if (!(ft_strcmp(com, "rra")))
+		return (rev_rotate(a_pile, 0, NULL));
+	else if (!(ft_strcmp(com, "rrb")))
+		return (rev_rotate(b_pile, 0, NULL));
+	else if (!(ft_strcmp(com, "rrr")))
+	{
+		rev_rotate(a_pile, 0, NULL);
+		return (rev_rotate(b_pile, 0, NULL));
+	}
+	else
+		return (1);
+	return (0);
+}
 
 int			exec_command(t_elem **a_pile, t_elem **b_pile, char *com)
 {
@@ -29,25 +52,11 @@ int			exec_command(t_elem **a_pile, t_elem **b_pile, char *com)
 		return (push(a_pile, b_pile, 0, NULL));
 	else if (!(ft_strcmp(com, "ra")))
 		return (rotate(a_pile, 0, NULL));
-	else if (!(ft_strcmp(com, "rb")))
-		return (rotate(b_pile, 0, NULL));
-	else if (!(ft_strcmp(com, "rr")))
-	{
-		rotate(a_pile, 0, NULL);
-		return (rotate(b_pile, 0, NULL));
-	}
-	else if (!(ft_strcmp(com, "rra")))
-		return (rev_rotate(a_pile, 0, NULL));
-	else if (!(ft_strcmp(com, "rrb")))
-		return (rev_rotate(b_pile, 0, NULL));
-	else if (!(ft_strcmp(com, "rrr")))
-	{
-		rev_rotate(a_pile, 0, NULL);
-		return (rev_rotate(b_pile, 0, NULL));
-	}
-	else
+	else if (next_command(a_pile, b_pile, com))
 		return (1);
+	return (0);
 }
+
 static int	error(t_elem **a_pile, t_elem **b_pile, char **com)
 {
 	ft_strdel(com);
@@ -57,7 +66,7 @@ static int	error(t_elem **a_pile, t_elem **b_pile, char **com)
 	return (1);
 }
 
-void	print_pile(t_elem *a_pile, t_elem *b_pile)
+void		print_pile(t_elem *a_pile, t_elem *b_pile)
 {
 	t_elem *tmp;
 
@@ -78,7 +87,7 @@ void	print_pile(t_elem *a_pile, t_elem *b_pile)
 	ft_printf("\n\n");
 }
 
-int		get_command(t_elem **a_pile, t_elem **b_pile, int flag)
+int			get_command(t_elem **a_pile, t_elem **b_pile, int flag)
 {
 	char	*com;
 
@@ -91,5 +100,6 @@ int		get_command(t_elem **a_pile, t_elem **b_pile, int flag)
 			print_pile(*a_pile, *b_pile);
 		ft_strdel(&com);
 	}
+	ft_strdel(&com);
 	return (0);
 }

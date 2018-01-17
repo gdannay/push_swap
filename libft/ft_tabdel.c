@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lennbr.c                                        :+:      :+:    :+:   */
+/*   ft_tabdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/06 11:08:00 by gdannay           #+#    #+#             */
-/*   Updated: 2017/12/06 11:08:16 by gdannay          ###   ########.fr       */
+/*   Created: 2018/01/17 10:49:08 by gdannay           #+#    #+#             */
+/*   Updated: 2018/01/17 10:50:12 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int			ft_nbrlen(int n)
-{
-	int		taille;
+#include "libft.h"
 
-	taille = 0;
-	if (n <= 0)
-		taille++;
-	while (n)
+void	ft_tabdel(char ***tab)
+{
+	int i;
+
+	i = -1;
+	if (tab && *tab)
 	{
-		n /= 10;
-		taille++;
+		while ((*tab)[++i])
+			ft_strdel(&(*tab)[i]);
+		free(*tab);
+		*tab = NULL;
 	}
-	return (taille);
 }

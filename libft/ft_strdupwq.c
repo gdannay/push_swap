@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 18:47:44 by gdannay           #+#    #+#             */
-/*   Updated: 2017/11/14 19:12:24 by gdannay          ###   ########.fr       */
+/*   Created: 2017/11/09 21:40:08 by gdannay           #+#    #+#             */
+/*   Updated: 2018/01/11 16:46:57 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include <stdlib.h>
+#include "libft.h"
 
-int	ft_atoi(const char *nbr)
+char	*ft_strdupwq(char *s, char quote)
 {
-	int	i;
-	int	neg;
-	int	n;
+	int		i;
+	int		j;
+	char	*new;
 
 	i = 0;
-	neg = 0;
-	n = 0;
-	while ((nbr[i] >= 8 && nbr[i] <= 13) || nbr[i] == ' ')
-		i++;
-	if (nbr[i] == '-')
-		neg = 1;
-	if (nbr[i] == '-' || nbr[i] == '+')
-		i++;
-	while (nbr[i] != '\0' && nbr[i] >= '0' && nbr[i] <= '9')
+	j = -1;
+	if (s == NULL)
+		return (NULL);
+	if (quote < 0)
+		quote *= -1;
+	i = ft_strlenwq(s, quote);
+	if ((new = (char *)malloc(sizeof(char) * (i + 1))) == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i] != '\0')
 	{
-		n = n * 10 - (nbr[i] - '0');
+		if (s[i] != quote && (s[i] != '\\' || (s[i + 1] && s[i + 1] == '\\')))
+			new[++j] = s[i];
 		i++;
 	}
-	if (neg == 1)
-		return (n);
-	return (-n);
+	new[j + 1] = '\0';
+	return (new);
 }

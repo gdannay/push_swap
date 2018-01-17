@@ -6,13 +6,14 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:16:25 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/15 17:28:27 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/17 10:31:46 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+#include "push_swap.h"
 
-void	del_lst(t_elem **pile)
+void		del_lst(t_elem **pile)
 {
 	t_elem	*tmp;
 
@@ -25,7 +26,7 @@ void	del_lst(t_elem **pile)
 	*pile = NULL;
 }
 
-int		check_order(t_elem *a_pile, t_elem *b_pile)
+int			check_order(t_elem *a_pile, t_elem *b_pile)
 {
 	t_elem	*tmp;
 
@@ -37,6 +38,13 @@ int		check_order(t_elem *a_pile, t_elem *b_pile)
 	if (tmp && tmp->next == NULL)
 		return (0);
 	return (1);
+}
+
+void		del_com(t_com **first, t_com **del, t_com **newnext)
+{
+	free(*del);
+	(*first)->next = *newnext;
+	(*newnext)->prev = (*first);
 }
 
 t_elem		*new_elem(char *av, t_elem **a_pile, t_elem *tmp)

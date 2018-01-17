@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 18:47:44 by gdannay           #+#    #+#             */
-/*   Updated: 2017/11/14 19:12:24 by gdannay          ###   ########.fr       */
+/*   Created: 2017/11/09 21:39:57 by gdannay           #+#    #+#             */
+/*   Updated: 2018/01/11 14:20:26 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <string.h>
 
-int	ft_atoi(const char *nbr)
+size_t	ft_strlenwq(char *s, char quote)
 {
-	int	i;
-	int	neg;
-	int	n;
+	size_t	i;
+	size_t	size;
 
 	i = 0;
-	neg = 0;
-	n = 0;
-	while ((nbr[i] >= 8 && nbr[i] <= 13) || nbr[i] == ' ')
-		i++;
-	if (nbr[i] == '-')
-		neg = 1;
-	if (nbr[i] == '-' || nbr[i] == '+')
-		i++;
-	while (nbr[i] != '\0' && nbr[i] >= '0' && nbr[i] <= '9')
+	size = 0;
+	if (s == NULL)
+		return (0);
+	while (s[i] != '\0')
 	{
-		n = n * 10 - (nbr[i] - '0');
+		if (s[i] != quote && (s[i] != '\\' || (s[i + 1] && s[i + 1] == '\\')))
+			size++;
 		i++;
 	}
-	if (neg == 1)
-		return (n);
-	return (-n);
+	return (size);
 }

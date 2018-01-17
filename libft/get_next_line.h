@@ -6,21 +6,20 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 19:30:42 by gdannay           #+#    #+#             */
-/*   Updated: 2017/11/29 13:51:43 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/07 12:32:20 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 4096
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/types.h>
 # include <sys/stat.h>
-# include <fcntl.h>
 # include "libft.h"
+# include <fcntl.h>
 # include <string.h>
 
 typedef struct		s_lst

@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 19:54:44 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/08 14:53:50 by gdannay          ###   ########.fr       */
+/*   Created: 2017/11/09 21:40:08 by gdannay           #+#    #+#             */
+/*   Updated: 2018/01/11 19:00:54 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-char	*ft_strstr(const char *str, const char *need)
+char	*ft_strndupwq(const char *s, size_t n)
 {
-	int	i;
-	int	j;
-	int	k;
+	int		i;
+	int		j;
+	char	*new;
 
 	i = 0;
-	j = 0;
-	k = 0;
-	if (str == NULL || need == NULL)
+	j = -1;
+	if (n <= 0)
 		return (NULL);
-	while (str[i] != '\0')
+	while (s && s[i] != '\0' && (size_t)i < n)
+		i++;
+	if ((new = (char *)malloc(sizeof(char) * (i + 1))) == NULL)
+		return (NULL);
+	i = 0;
+	while (s && s[i] != '\0' && j < (int)n)
 	{
-		while (str[i + k] == need[j])
-		{
-			k++;
-			j++;
-			if (need[j] == '\0')
-				return ((char *)(str + i));
-		}
-		k = 0;
-		j = 0;
+		if (s[i] != '\\' || (s[i + 1] && s[i + 1] == '\\'
+				&& (i == 0 || s[i - 1] != '\\')))
+			new[++j] = s[i];
 		i++;
 	}
-	if (need[j] == '\0')
-		return ((char *)(str));
-	return (NULL);
+	new[j + 1] = '\0';
+	return (new);
 }

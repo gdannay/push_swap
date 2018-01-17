@@ -6,33 +6,18 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 11:20:28 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/16 20:06:37 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/17 10:13:46 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "push_swap.h"
 
-/*
-**1 : PA
-**2 : PB
-**3 : SA
-**4 : SB
-**5 : SS
-**6 : RRA
-**7 : RRB
-**8 : RRR
-**9 : RA
-**10 : RB
-**11 : RR
-*/
-
-static t_com 	*delete_coms(t_com **first, t_com **del, t_com **secdel)
+static t_com	*delete_coms(t_com **first, t_com **del, t_com **secdel)
 {
 	t_com	*tmp;
 	t_com	*tmp2;
 
-//	dprintf(1, "DEL = %d %d\n", (*del)->com, (*secdel)->com);
 	if (del == first)
 	{
 		(*first) = (*first)->next->next;
@@ -53,43 +38,52 @@ static t_com 	*delete_coms(t_com **first, t_com **del, t_com **secdel)
 	return (tmp);
 }
 
-static t_com	*merge_com(t_com **merge, t_com **secmer)
+static t_com	*merge_com(t_com **merge, t_com **secmer, t_com **secnext)
 {
-	t_com *tmp;
-
-//	dprintf(1, "MERGE = %d %d\n", (*merge)->com, (*secmer)->com);
-	tmp = (*secmer)->next;
-//	dprintf(1, "MERGE = %d %d %d\n", (*merge)->com, (*secmer)->com, tmp->com);
-	if (((*merge)->com == 3 && (*secmer)->com == 4)
-		|| ((*merge)->com == 4 && (*secmer)->com == 3))
-		(*merge)->com = 5;
-	else if (((*merge)->com == 6 && ((*secmer)->com == 7))
-		|| ((*merge)->com == 7 && (*secmer)->com == 6))
-		(*merge)->com = 8;
-	else if (((*merge)->com == 9 && (*secmer)->com == 10)
-		|| ((*merge)->com == 10 && (*secmer)->com == 9))
-		(*merge)->com = 11;
-	else if (((*merge)->com == 8 && (*secmer)->com == 10)
-		|| ((*merge)->com == 10 && (*secmer)->com == 8))
-		(*merge)->com = 6;
-	else if (((*merge)->com == 8 && (*secmer)->com == 9)
-		|| ((*merge)->com == 9 && (*secmer)->com == 8))
-		(*merge)->com = 7;
-	else if (((*merge)->com == 7 && (*secmer)->com == 11)
-		|| ((*merge)->com == 11 && (*secmer)->com == 7))
-		(*merge)->com = 9;
-	else if (((*merge)->com == 6 && (*secmer)->com == 11)
-		|| ((*merge)->com == 11 && (*secmer)->com == 6))
-		(*merge)->com = 10;
-	free(*secmer);
-	(*merge)->next = tmp;
-//	dprintf(1, "MERGE = %d %d %d %d\n", (*merge)->com, (*secmer)->com, tmp->com, (*merge)->next->com);
-	tmp->prev = (*merge);
-//	dprintf(1, "MERGE = %d %d %d %d\n", (*merge)->com, (*secmer)->com, tmp->com, (*merge)->next->com);
+	if (((*merge)->com == SA && (*secmer)->com == SB)
+		|| ((*merge)->com == SB && (*secmer)->com == SA))
+		(*merge)->com = SS;
+	else if (((*merge)->com == RRA && ((*secmer)->com == RRB))
+		|| ((*merge)->com == RRB && (*secmer)->com == RRA))
+		(*merge)->com = RRR;
+	else if (((*merge)->com == RA && (*secmer)->com == RB)
+		|| ((*merge)->com == RB && (*secmer)->com == RA))
+		(*merge)->com = RR;
+	else if (((*merge)->com == RRR && (*secmer)->com == RB)
+		|| ((*merge)->com == RB && (*secmer)->com == RRR))
+		(*merge)->com = RRA;
+	else if (((*merge)->com == RRR && (*secmer)->com == RA)
+		|| ((*merge)->com == RA && (*secmer)->com == RRR))
+		(*merge)->com = RRB;
+	else if (((*merge)->com == RRB && (*secmer)->com == RR)
+		|| ((*merge)->com == RR && (*secmer)->com == RRB))
+		(*merge)->com = RA;
+	else if (((*merge)->com == RRA && (*secmer)->com == RR)
+		|| ((*merge)->com == RR && (*secmer)->com == RRA))
+		(*merge)->com = RB;
+	else
+		return (*secmer);
+	del_com(merge, secmer, secnext);
 	return (*merge);
 }
 
-static void	print_com(t_com **first)
+static void		print_next(t_com *tmp)
+{
+	if (tmp->com == RRA)
+		ft_printf("rra\n");
+	else if (tmp->com == RRB)
+		ft_printf("rrb\n");
+	else if (tmp->com == RRR)
+		ft_printf("rrr\n");
+	else if (tmp->com == RA)
+		ft_printf("ra\n");
+	else if (tmp->com == RB)
+		ft_printf("rb\n");
+	else if (tmp->com == RR)
+		ft_printf("rr\n");
+}
+
+static void		print_com(t_com **first)
 {
 	t_com	*tmp;
 
@@ -97,34 +91,24 @@ static void	print_com(t_com **first)
 	while (tmp)
 	{
 		(*first) = (*first)->next;
-		if (tmp->com == 1)
+		if (tmp->com == PA)
 			ft_printf("pa\n");
-		else if (tmp->com == 2)
+		else if (tmp->com == PB)
 			ft_printf("pb\n");
-		else if (tmp->com == 3)
+		else if (tmp->com == SA)
 			ft_printf("sa\n");
-		else if (tmp->com == 4)
+		else if (tmp->com == SB)
 			ft_printf("sb\n");
-		else if (tmp->com == 5)
+		else if (tmp->com == SS)
 			ft_printf("ss\n");
-		else if (tmp->com == 6)
-			ft_printf("rra\n");
-		else if (tmp->com == 7)
-			ft_printf("rrb\n");
-		else if (tmp->com == 8)
-			ft_printf("rrr\n");
-		else if (tmp->com == 9)
-			ft_printf("ra\n");
-		else if (tmp->com == 10)
-			ft_printf("rb\n");
-		else if (tmp->com == 11)
-			ft_printf("rr\n");
+		else
+			print_next(tmp);
 		free(tmp);
 		tmp = (*first);
 	}
 }
 
-void	manage_commands(t_com **first)
+void			manage_commands(t_com **first)
 {
 	t_com	*tmp;
 	int		i;
@@ -134,29 +118,18 @@ void	manage_commands(t_com **first)
 	while (tmp)
 	{
 		if (tmp && tmp->next &&
-			((tmp->com == 1 && tmp->next->com == 2) ||
-			(tmp->com == 2 && tmp->next->com == 1) ||
-			(tmp->com == 6 && tmp->next->com == 9) ||
-			(tmp->com == 9 && tmp->next->com == 6) ||
-			(tmp->com == 10 && tmp->next->com == 7) ||
-			(tmp->com == 7 && tmp->next->com == 10)))
+			((tmp->com == PA && tmp->next->com == PB) ||
+			(tmp->com == PB && tmp->next->com == PA) ||
+			(tmp->com == RRA && tmp->next->com == RA) ||
+			(tmp->com == RA && tmp->next->com == RRA) ||
+			(tmp->com == RB && tmp->next->com == RRB) ||
+			(tmp->com == RRB && tmp->next->com == RB)))
 			tmp = delete_coms(first, &tmp, &(tmp->next));
-		else if (tmp && tmp->next &&
-				((tmp->com == 3 && tmp->next->com == 4) ||
-				(tmp->com == 4 && tmp->next->com == 3) ||
-				(tmp->com == 6 && tmp->next->com == 7) ||
-				(tmp->com == 7 && tmp->next->com == 6) ||
-				(tmp->com == 8 && tmp->next->com == 10) ||
-				(tmp->com == 10 && tmp->next->com == 8) ||
-				(tmp->com == 11 && tmp->next->com == 7) ||
-				(tmp->com == 7 && tmp->next->com == 11) ||
-				(tmp->com == 11 && tmp->next->com == 6) ||
-				(tmp->com == 6 && tmp->next->com == 11) ||
-				(tmp->com == 9 && tmp->next->com == 8) ||
-				(tmp->com == 8 && tmp->next->com == 9) ||
-				(tmp->com == 10 && tmp->next->com == 9) ||
-				(tmp->com == 9 && tmp->next->com == 10)))
-			tmp = merge_com(&tmp, &(tmp->next));
+		else if (tmp && tmp->next && ((tmp->com == SA) ||
+			(tmp->com == SB) || (tmp->com == RRA) ||
+			(tmp->com == RRB) || (tmp->com == RRR) ||
+			(tmp->com == RB) || (tmp->com == RR) || (tmp->com == RA)))
+			tmp = merge_com(&tmp, &(tmp->next), &(tmp->next->next));
 		else
 			tmp = tmp->next;
 		i++;

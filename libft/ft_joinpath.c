@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_joinpath.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 19:54:44 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/08 14:53:50 by gdannay          ###   ########.fr       */
+/*   Created: 2018/01/07 11:56:27 by gdannay           #+#    #+#             */
+/*   Updated: 2018/01/07 11:58:22 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-char	*ft_strstr(const char *str, const char *need)
+char		*ft_joinpath(char *dir, char *name)
 {
-	int	i;
-	int	j;
-	int	k;
+	char	*file_dir;
+	int		i;
+	int		j;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	k = 0;
-	if (str == NULL || need == NULL)
+	if ((file_dir = (char *)malloc(sizeof(char) *
+					(ft_strlen(dir) + ft_strlen(name) + 2))) == NULL)
 		return (NULL);
-	while (str[i] != '\0')
+	while (dir && dir[++i] != '\0')
+		file_dir[i] = dir[i];
+	if (i >= 0 && file_dir[i - 1] != '/')
 	{
-		while (str[i + k] == need[j])
-		{
-			k++;
-			j++;
-			if (need[j] == '\0')
-				return ((char *)(str + i));
-		}
-		k = 0;
-		j = 0;
+		file_dir[i] = '/';
 		i++;
 	}
-	if (need[j] == '\0')
-		return ((char *)(str));
-	return (NULL);
+	while (name && name[j] != '\0')
+	{
+		file_dir[i] = name[j];
+		i++;
+		j++;
+	}
+	file_dir[i] = '\0';
+	return (file_dir);
 }

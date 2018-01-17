@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 19:44:59 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/07 16:26:19 by gdannay          ###   ########.fr       */
+/*   Created: 2017/11/13 10:22:51 by gdannay           #+#    #+#             */
+/*   Updated: 2018/01/17 10:43:38 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	**ft_tabjoin(char **s1, char **s2)
 {
-	size_t			i;
-	unsigned char	*c1;
-	unsigned char	*c2;
+	size_t	size1;
+	size_t	size2;
+	char	**new;
+	size_t	i;
+	size_t	j;
 
-	i = 0;
-	c1 = (unsigned char *)s1;
-	c2 = (unsigned char *)s2;
-	if (!(c1) && !(c2))
+	i = -1;
+	j = 0;
+	size1 = ft_tablen(s1);
+	size2 = ft_tablen(s2);
+	if ((new = (char **)malloc(sizeof(char *) * (size1 + size2 + 1))) == NULL)
 		return (0);
-	else if (!(c1))
-		return (-c2[i]);
-	else if (!(c2))
-		return (c1[i]);
-	if (n == 0)
-		return (0);
-	while (c1[i] != '\0' && c2[i] != '\0'
-			&& i < n - 1 && c1[i] == c2[i])
-		i++;
-	return (c1[i] - c2[i]);
+	while (s1 && s1[++i])
+		new[i] = ft_strdup(s1[i]);
+	while (s2 && s2[j])
+		new[i++] = ft_strdup(s2[j++]);
+	new[i] = 0;
+	return (new);
 }

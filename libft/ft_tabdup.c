@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_dtabdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 18:47:44 by gdannay           #+#    #+#             */
-/*   Updated: 2017/11/14 19:12:24 by gdannay          ###   ########.fr       */
+/*   Created: 2018/01/07 11:59:17 by gdannay           #+#    #+#             */
+/*   Updated: 2018/01/17 10:43:20 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-int	ft_atoi(const char *nbr)
+char	**ft_tabdup(char **tab)
 {
-	int	i;
-	int	neg;
-	int	n;
+	int		i;
+	char	**cpy;
 
 	i = 0;
-	neg = 0;
-	n = 0;
-	while ((nbr[i] >= 8 && nbr[i] <= 13) || nbr[i] == ' ')
+	cpy = NULL;
+	while (tab && tab[i])
 		i++;
-	if (nbr[i] == '-')
-		neg = 1;
-	if (nbr[i] == '-' || nbr[i] == '+')
-		i++;
-	while (nbr[i] != '\0' && nbr[i] >= '0' && nbr[i] <= '9')
-	{
-		n = n * 10 - (nbr[i] - '0');
-		i++;
-	}
-	if (neg == 1)
-		return (n);
-	return (-n);
+	if ((cpy = (char **)malloc(sizeof(char *) * (i + 1))) == NULL)
+		return (NULL);
+	cpy[i] = 0;
+	i = -1;
+	while (tab && tab[++i])
+		cpy[i] = ft_strdup(tab[i]);
+	return (cpy);
 }
