@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:16:34 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/17 11:21:57 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/18 10:29:50 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int				main(int ac, char **av)
 		if (ac == 2 && ft_strstr(av[1], " ") &&
 			!(nb = ft_strsplit(av[1], ' ')))
 			return (1);
-		if (nb && !(a_pile = check_args(ft_tablen(nb), nb, NULL)))
+		if (nb && !(a_pile = check_args(ft_tablen(nb), nb, NULL, 0)))
 			return (1);
-		else if (!nb && (a_pile = check_args(ac, av, NULL)) == NULL)
+		else if (!nb && (a_pile = check_args(ac, av, NULL, 1)) == NULL)
 			return (1);
 		if (nb)
 			ft_tabdel(&nb);
-		push_swap(&a_pile, &b_pile, ac - 1);
+		push_swap(&a_pile, &b_pile, lst_size(a_pile));
 	}
 	del_lst(&a_pile);
 	del_lst(&b_pile);

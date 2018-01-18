@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 20:20:45 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/17 10:12:21 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/18 10:26:30 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void				fusionb(t_elem **a_pile, t_elem **b_pile,
 void				fusiona(t_elem **a_pile, t_elem **b_pile,
 					int size, t_pile *list);
 void				del_com(t_com **first, t_com **del, t_com **newnext);
+int					lst_size(t_elem *pile);
 
 #endif

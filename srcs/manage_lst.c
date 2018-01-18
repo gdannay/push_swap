@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:16:25 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/17 10:31:46 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/18 10:27:21 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,21 @@ void		del_com(t_com **first, t_com **del, t_com **newnext)
 	free(*del);
 	(*first)->next = *newnext;
 	(*newnext)->prev = (*first);
+}
+
+int			lst_size(t_elem *pile)
+{
+	t_elem	*tmp;
+	int		size;
+
+	tmp = pile;
+	size = 0;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		size++;
+	}
+	return (size);
 }
 
 t_elem		*new_elem(char *av, t_elem **a_pile, t_elem *tmp)

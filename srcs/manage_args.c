@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:16:18 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/08 19:20:30 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/18 10:14:18 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,12 @@ static int		manage_flag(char *av)
 	return (flag);
 }
 
-t_elem			*check_args(int ac, char **av, int *flag)
+t_elem			*check_args(int ac, char **av, int *flag, int i)
 {
 	t_elem	*a_pile;
 	t_elem	*tmp;
-	int		i;
 
 	a_pile = NULL;
-	i = 1;
 	while (flag && av[i] && av[i][0] == '-')
 	{
 		if ((*flag = *flag | manage_flag(av[i])) <= 0)

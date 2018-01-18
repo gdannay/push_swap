@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 12:33:10 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/15 17:42:26 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/18 10:14:46 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct		s_pile
 	struct s_com	*com;
 }					t_pile;
 
-t_elem				*check_args(int ac, char **av, int *flag);
+t_elem				*check_args(int ac, char **av, int *flag, int i);
 void				del_lst(t_elem **a_pile);
 int					exec_command(t_elem **a_pile, t_elem **b_pile, char *com);
 int					push(t_elem **lose, t_elem **get, int com, t_pile *list);

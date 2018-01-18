@@ -6,7 +6,7 @@
 /*   By: gdannay <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/08 17:15:52 by gdannay           #+#    #+#             */
-/*   Updated: 2018/01/17 11:21:46 by gdannay          ###   ########.fr       */
+/*   Updated: 2018/01/18 10:15:12 by gdannay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static int	checker(int ac, char **av, t_elem **a_pile, t_elem **b_pile)
 	if (ac == 2 && ft_strstr(av[1], " ") &&
 			!(nb = ft_strsplit(av[1], ' ')))
 		ret = 1;
-	if (nb && ((*a_pile = check_args(ft_tablen(nb), nb, &flag)) == NULL
+	if (nb && ((*a_pile = check_args(ft_tablen(nb), nb, &flag, 0)) == NULL
 				|| get_command(a_pile, b_pile, flag)))
 		ret = 1;
-	else if (!nb && ((*a_pile = check_args(ac, av, &flag)) == NULL
+	else if (!nb && ((*a_pile = check_args(ac, av, &flag, 1)) == NULL
 				|| get_command(a_pile, b_pile, flag)))
 		ret = 1;
 	if (!ret && check_order(*a_pile, *b_pile))
